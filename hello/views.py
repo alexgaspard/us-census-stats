@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, HttpRequest, JsonR
 
 from .models import Greeting
 from sqlite3 import connect, Error
-from os import getcwd
+from os import listdir
 
 # Create your views here.
 def index(request):
@@ -31,7 +31,7 @@ def test(request):
         data = '' #cur.fetchall()
 
         #select * from census_learn_sql where rowid=215094;
-        return JsonResponse({'dir':getcwd(),'version':'SQLite version: %s'%version,'data':data})
+        return JsonResponse({'dir':listdir('.'),'version':'SQLite version: %s'%version,'data':data})
     except Error as e:
         return JsonResponse({'error':'%s'%e.args[0]})
     finally:
