@@ -24,8 +24,13 @@ def test(request):
         con = connect('us-census.db')
         cur = con.cursor()    
         cur.execute('SELECT SQLITE_VERSION()')
-        data = cur.fetchone()
-        return JsonResponse({'message':'SQLite version: %s'%data})
+        version = cur.fetchone()
+        
+        cur.execute('select education, count(*) as c, avg(age), (select count(distinct education) from census_learn_sql) as e from census_learn_sql group by education order by education desc limit 100')
+        data = cur.fetchall()
+
+        #select * from census_learn_sql where rowid=215094;
+        return JsonResponse({'version':'SQLite version: %s'%version,'data':data})
     except Error as e:
         return JsonResponse({'error':'%s'%e.args[0]})
     finally:
