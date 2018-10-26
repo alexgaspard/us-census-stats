@@ -27,11 +27,11 @@ def test(request):
         cur.execute('SELECT SQLITE_VERSION()')
         version = cur.fetchone()
         
-        #cur.execute('select education, count(*) as c, avg(age), (select count(distinct education) from census_learn_sql) as e from census_learn_sql group by education order by education desc limit 100')
-        data = '' #cur.fetchall()
+        cur.execute('select education, count(*) as c, avg(age), (select count(distinct education) from census_learn_sql) as e from census_learn_sql group by education order by education desc limit 100')
+        data = cur.fetchall()
 
         #select * from census_learn_sql where rowid=215094;
-        return JsonResponse({'dir':listdir('.'),'version':'SQLite version: %s'%version,'data':data})
+        return JsonResponse({'version':'SQLite version: %s'%version,'data':data})
     except Error as e:
         return JsonResponse({'error':'%s'%e.args[0]})
     finally:
