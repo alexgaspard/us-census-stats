@@ -21,7 +21,7 @@ def db(request):
 
 def test(request):
     try:
-        con = lite.connect('us-census.db')
+        con = connect('us-census.db')
         cur = con.cursor()    
         cur.execute('SELECT SQLITE_VERSION()')
         data = cur.fetchone()
