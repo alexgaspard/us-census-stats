@@ -25,10 +25,9 @@ def test(request):
         cur = con.cursor()    
         cur.execute('SELECT SQLITE_VERSION()')
         data = cur.fetchone()
-        print("SQLite version: %s" % data)
+        return '{"message":"SQLite version: %s"}'%data
     except Error as e:
-        print("Error %s:" % e.args[0])
-        sys.exit(1)
+        return '{"error":"%s"}'%e.args[0]
     finally:
         if con:
             con.close()
