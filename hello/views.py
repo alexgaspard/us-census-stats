@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed, HttpRequest, JsonResponse, HttpResponseBadRequest
 
 from .models import Greeting
 from sqlite3 import connect, Error
@@ -25,9 +25,9 @@ def test(request):
         cur = con.cursor()    
         cur.execute('SELECT SQLITE_VERSION()')
         data = cur.fetchone()
-        return '{"message":"SQLite version: %s"}'%data
+        return JsonResponse({'message':'SQLite version: %s'%data})
     except Error as e:
-        return '{"error":"%s"}'%e.args[0]
+        return JsonResponse({'error':'%s'%e.args[0]})
     finally:
         if con:
             con.close()
