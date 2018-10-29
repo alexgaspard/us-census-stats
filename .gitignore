@@ -1,6 +1,7 @@
 venv
 *.pyc
-staticfiles
+census_analytics/static
 .env
-db.sqlite3
-getting-started/*
+venv
+.idea
+.vscode
