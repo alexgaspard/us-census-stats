@@ -1,7 +1,7 @@
 venv
 *.pyc
-census_analytics/static
 .env
 venv
 .idea
 .vscode
+staticfiles
