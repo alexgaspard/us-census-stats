@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"mt-3\">Results</h2>\n<div *ngFor=\"let result of results.data\">\n  <div class=\"row mb-3\">\n    <div *ngFor=\"let value of result\" class=\"col-md-2 mb-1\">{{ value }}</div>\n  </div>\n</div>\n"
+module.exports = "<button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseExample\" aria-expanded=\"false\"\n  aria-controls=\"collapseExample\">\n  Button with data-target\n</button>\n<div class=\"collapse\" id=\"collapseExample\">\n  <div class=\"card card-body\">\n    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh\n    helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.\n  </div>\n</div>\n\n<h2 class=\"mt-3\">Results</h2>\n<div *ngFor=\"let result of results.data\">\n  <div class=\"row mb-3\">\n    <div *ngFor=\"let value of result\" class=\"col-md-2 mb-1\">{{ value }}</div>\n  </div>\n</div>"
 
 /***/ }),
 
