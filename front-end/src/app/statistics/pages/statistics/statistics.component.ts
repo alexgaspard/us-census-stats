@@ -11,11 +11,13 @@ import { StatisticsService } from '../../shared/statistics.service';
 export class StatisticsComponent implements OnInit {
 
     statistics: Statistics;
+    loading: boolean;
 
     constructor(
         private statisticsService: StatisticsService,
     ) {
         this.statistics = new Statistics();
+        this.loading = true;
     }
 
     ngOnInit() {
@@ -23,6 +25,9 @@ export class StatisticsComponent implements OnInit {
     }
 
     private getStatistics(): void {
-        this.statisticsService.getStatistics().subscribe(statistics => this.statistics = statistics);
+        this.statisticsService.getStatistics().subscribe(statistics => {
+            this.statistics = statistics;
+            this.loading = false;
+        });
     }
 }

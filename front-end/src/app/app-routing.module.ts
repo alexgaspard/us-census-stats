@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StatisticsModule } from './statistics';
 import { StatisticsComponent } from './statistics/pages/statistics/statistics.component';
 
 

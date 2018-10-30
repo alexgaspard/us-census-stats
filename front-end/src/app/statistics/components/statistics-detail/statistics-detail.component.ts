@@ -9,9 +9,11 @@ import { Statistics } from '../../shared/statistics';
 })
 export class StatisticsDetailComponent {
     @Input() statistics: Statistics;
+    @Input() loading: boolean;
 
     constructor(
     ) {
         this.statistics = new Statistics();
+        this.loading = true;
     }
 }

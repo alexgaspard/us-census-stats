@@ -260,7 +260,7 @@ var HttpService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/* red = #EA4335;\nyellow = #FBBC05;\ngreen = #34A853;\nblue = #4285F4; */\n\n@-webkit-keyframes dotloader1{\n  0%{top:0px;}\n  15%{top:10px;}\n  30%{top:0px;}\n  100%{top:0px;}\n}\n\n@keyframes dotloader1{\n  0%{top:0px;}\n  15%{top:10px;}\n  30%{top:0px;}\n  100%{top:0px;}\n}\n\n#toggledots{\n  margin-left:105px;\n}\n\n.dot{\n  margin: 2px;\n  height:20px;\n  width:20px;\n  border-radius:10px;\n  display:inline-block;\n  position:relative;\n}\n\n#dot1.animated{\n  background: red;\n  -webkit-animation-name:dotloader1;\n          animation-name:dotloader1;\n  -webkit-animation-duration:1s;\n          animation-duration:1s;\n  -webkit-animation-delay:0s;\n          animation-delay:0s;\n  -webkit-animation-iteration-count:infinite;\n          animation-iteration-count:infinite;\n}\n\n#dot2.animated{\n  background:green;\n  -webkit-animation-name:dotloader1;\n          animation-name:dotloader1;\n  -webkit-animation-duration:1s;\n          animation-duration:1s;\n  -webkit-animation-delay:0.1s;\n          animation-delay:0.1s;\n  -webkit-animation-iteration-count:infinite;\n          animation-iteration-count:infinite;\n}\n\n#dot3.animated{\n  background: blue;\n  -webkit-animation-name:dotloader1;\n          animation-name:dotloader1;\n  -webkit-animation-duration:1s;\n          animation-duration:1s;\n  -webkit-animation-delay:0.2s;\n          animation-delay:0.2s;\n  -webkit-animation-iteration-count:infinite;\n          animation-iteration-count:infinite;\n}\n\n#dot4.animated{\n  background: yellow;\n  -webkit-animation-name:dotloader1;\n          animation-name:dotloader1;\n  -webkit-animation-duration:1s;\n          animation-duration:1s;\n  -webkit-animation-delay:0.3s;\n          animation-delay:0.3s;\n  -webkit-animation-iteration-count:infinite;\n          animation-iteration-count:infinite;\n}\n"
 
 /***/ }),
 
@@ -271,7 +271,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"mt-3\">Results</h2>\n<div *ngFor=\"let result of statistics.data\">\n    <div class=\"row mb-3\">\n        <div *ngFor=\"let value of result\" class=\"col-md-2 mb-1\">{{ value }}</div>\n    </div>\n</div>"
+module.exports = "<table class=\"table table-striped table-hover\">\n    <thead>\n        <tr>\n            <th scope=\"col\">Value</th>\n            <th scope=\"col\">Count</th>\n            <th scope=\"col\">Average</th>\n            <th scope=\"col\">Total</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let result of statistics.data\">\n            <td *ngFor=\"let value of result\">{{value}}</td>\n        </tr>\n    </tbody>\n</table>\n<div [hidden]=\"!loading\" class=\"row\">\n    <div class=\"col text-center\">\n        <div id='dot1' class='dot animated'></div>\n        <div id='dot2' class='dot animated'></div>\n        <div id='dot3' class='dot animated'></div>\n        <div id='dot4' class='dot animated'></div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -300,13 +300,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var StatisticsDetailComponent = /** @class */ (function () {
     function StatisticsDetailComponent() {
-        console.log('gfddhds');
         this.statistics = new _shared_statistics__WEBPACK_IMPORTED_MODULE_1__["Statistics"]();
+        this.loading = true;
     }
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", _shared_statistics__WEBPACK_IMPORTED_MODULE_1__["Statistics"])
     ], StatisticsDetailComponent.prototype, "statistics", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], StatisticsDetailComponent.prototype, "loading", void 0);
     StatisticsDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-statistics-detail',
@@ -357,7 +361,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-statistics-detail [statistics]=\"statistics\"></app-statistics-detail>"
+module.exports = "<app-statistics-detail [statistics]=\"statistics\" [loading]=\"loading\"></app-statistics-detail>"
 
 /***/ }),
 
@@ -389,16 +393,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var StatisticsComponent = /** @class */ (function () {
     function StatisticsComponent(statisticsService) {
         this.statisticsService = statisticsService;
-        console.log('gfdgfdg');
         this.statistics = new _shared_statistics__WEBPACK_IMPORTED_MODULE_1__["Statistics"]();
+        this.loading = true;
     }
     StatisticsComponent.prototype.ngOnInit = function () {
-        console.log('aeza');
         this.getStatistics();
     };
     StatisticsComponent.prototype.getStatistics = function () {
         var _this = this;
-        this.statisticsService.getStatistics().subscribe(function (statistics) { return _this.statistics = statistics; });
+        this.statisticsService.getStatistics().subscribe(function (statistics) {
+            _this.statistics = statistics;
+            _this.loading = false;
+        });
     };
     StatisticsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

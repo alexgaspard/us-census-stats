@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.urls import path
 
 from census_analytics.views import index, test
@@ -7,5 +8,5 @@ from census_analytics.views import index, test
 
 urlpatterns = [
     path(r'api/stats', test, name='stats'),
-    path(r'', index, name='index'),
+    url(r'', index, name='index'),
 ]
