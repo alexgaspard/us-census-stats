@@ -55,7 +55,7 @@ ROOT_URLCONF = "anorak_test.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'staticfiles')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
