@@ -1,19 +1,13 @@
-from django.urls import include, path
+from django.conf.urls import url
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.urls import include
+from django.views.generic import RedirectView
 
-# admin.autodiscover()
-
-# To add a new path, first import the app:
-# import blog
-#
-# Then add the new path:
-# path('blog/', blog.urls, name="blog")
-#
-# Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
+from census_analytics.views import index
 
 urlpatterns = [
-    path(r'', include('census_analytics.urls')),
-    # path("", census_analytics.views.index, name="index"),
-    # path("db/", census_analytics.views.db, name="db"),
-    # path("test/", census_analytics.views.test, name="(test"),
-    # path("admin/", admin.site.urls),
+    url(r'^api/', include('census_analytics.urls')),
+    url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
+        RedirectView.as_view(url=staticfiles_storage.url('%(path)s'), permanent=False)),
+    url(r'', index, name='index'),
 ]
