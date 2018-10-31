@@ -1,7 +1,7 @@
 venv
 *.pyc
 .env
-venv
 .idea
 .vscode
 staticfiles
+node_modules
