@@ -8,7 +8,7 @@ import { StatisticsService } from '../../shared/statistics.service';
     templateUrl: './statistics.component.html',
     styleUrls: ['./statistics.component.css']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent {
 
     statistics: Statistics;
     loading: boolean;
@@ -17,15 +17,13 @@ export class StatisticsComponent implements OnInit {
         private statisticsService: StatisticsService,
     ) {
         this.statistics = new Statistics();
+        this.loading = false;
+    }
+
+    getStatistics(field: string): void {
+        this.statistics = new Statistics();
         this.loading = true;
-    }
-
-    ngOnInit() {
-        this.getStatistics();
-    }
-
-    private getStatistics(): void {
-        this.statisticsService.getStatistics().subscribe(statistics => {
+        this.statisticsService.getStatistics(field).subscribe(statistics => {
             this.statistics = statistics;
             this.loading = false;
         });

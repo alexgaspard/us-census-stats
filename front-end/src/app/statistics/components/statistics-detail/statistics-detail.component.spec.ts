@@ -24,9 +24,9 @@ describe('StatisticsDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should raise saved when save', () => {
-  //   const resource = new Resource();
-  //   component.saved.subscribe(x => expect(x).toBe(resource));
-  //   component.save(resource);
-  // });
+  it('should raise selected when select', () => {
+    const value = 'value';
+    component.selected.subscribe(x => expect(x).toBe(value));
+    component.select(value);
+  });
 });

@@ -1,20 +1,10 @@
 <div class="container">
-  <h1>US census stats</h1>
-  <p>US census data can be analyzed here.</p>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample">
-    Button with data-target
-  </button>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-      keffiyeh
-      helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  <div class="jumbotron">
+    <h1 class="display-4">US census stats</h1>
+    <p class="lead">US census data can be analyzed here.</p>
+    <hr class="my-4">
+    <div class="container-fluid" ng-app="anoraktest">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-
-  <div class="container-fluid" ng-app="anoraktest">
-    <router-outlet></router-outlet>
   </div>
 </div>

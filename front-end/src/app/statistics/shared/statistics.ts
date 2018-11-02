@@ -1,9 +1,13 @@
-export class Statistics {
-    version: string;
-    data: string[][];
+import { Dataset } from './dataset';
 
-    // value: string;
-    // count: number;
-    // average: number;
-    // total: number;
+export class Statistics {
+    data: Dataset[];
+    total: number;
+    skipped_lines_count: number;
+
+    constructor() {
+        this.data = [];
+        this.total = 0;
+        this.skipped_lines_count = 0;
+    }
 }

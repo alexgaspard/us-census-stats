@@ -15,7 +15,7 @@ export class StatisticsService {
         private http: HttpService
     ) { }
 
-    getStatistics(): Observable<Statistics> {
-        return this.http.get<Statistics>(this.STATISTICS_URL);
+    getStatistics(field: string): Observable<Statistics> {
+        return this.http.get<Statistics>(this.STATISTICS_URL, { 'field': field });
     }
 }

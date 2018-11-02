@@ -6,6 +6,7 @@ import { StatisticsDetailComponent } from '../../components/statistics-detail/st
 import { Statistics } from '../../shared/statistics';
 import { StatisticsService } from '../../shared/statistics.service';
 import { StatisticsComponent } from './statistics.component';
+import { formDirectiveProvider } from '@angular/forms/src/directives/reactive_directives/form_group_directive';
 
 
 describe('StatisticsComponent', () => {
@@ -35,11 +36,13 @@ describe('StatisticsComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
         expect(component.statistics).toEqual(new Statistics());
+        // expect(component.loading).toEqual(false);
     });
 
     it('should getStatistics', () => {
+        const field = 'field';
         const getStatisticsSpy = spyOn(statisticsService, 'getStatistics').and.returnValue(of(new Statistics()));
-        component.ngOnInit();
-        expect(getStatisticsSpy).toHaveBeenCalled();
+        component.getStatistics(field);
+        expect(getStatisticsSpy).toHaveBeenCalledWith(field);
     });
 });

@@ -14,14 +14,8 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  getList<T>(url: string, filters: { [param: string]: string } = {}): Observable<T[]> {
-    return this.http.get<T[]>(url, { params: filters }).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  get<T>(url: string): Observable<T> {
-    return this.http.get<T>(url).pipe(
+  get<T>(url: string, filters: { [param: string]: string } = {}): Observable<T> {
+    return this.http.get<T>(url, { params: filters }).pipe(
       catchError(this.handleError)
     );
   }
