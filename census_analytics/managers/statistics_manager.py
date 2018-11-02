@@ -26,20 +26,20 @@ class StatisticsManager(object):
         if field not in ALLOWED_FIELDS:
             raise FieldNotAllowed(field)
         return self._db.read(
-            'select {0} as value, count(*) as count, avg(age) as age_average from {1} where {0} <> \'\' '
-            'group by {0} order by {0} desc limit {2}'.format(field, TABLE_NAME, LIMIT))
+            'select "{0}" as value, count(*) as count, avg(age) as age_average from {1} where "{0}" <> \'\' '
+            'group by "{0}" order by "{0}" desc limit {2}'.format(field, TABLE_NAME, LIMIT))
 
     def get_total(self, field: str) -> int:
         if field not in ALLOWED_FIELDS:
             raise FieldNotAllowed(field)
-        total = self._db.read('select count(distinct {0}) from {1}'.format(field, TABLE_NAME))
+        total = self._db.read('select count(distinct "{0}") from {1}'.format(field, TABLE_NAME))
         return int(next(iter(total[0].values())))
 
     def get_skipped_lines_count(self, field: str) -> int:
         if field not in ALLOWED_FIELDS:
             raise FieldNotAllowed(field)
         skipped_lines_count = self._db.read(
-            'select count(*) from {1} group by {0} order by {0} desc limit -1 offset {2}'.format(field, TABLE_NAME,
+            'select count(*) from {1} group by "{0}" order by "{0}" desc limit -1 offset {2}'.format(field, TABLE_NAME,
                                                                                                  LIMIT))
         total_count = 0
         for count in skipped_lines_count:

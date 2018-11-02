@@ -15,8 +15,8 @@ class TestStatisticsManager(TestCase):
         field = 'citizenship'
         self._manager.get_statistics(field)
         self._db.read.assert_called_once_with(
-            'select {0} as value, count(*) as count, avg(age) as age_average from {1} where {0} <> \'\' '
-            'group by {0} order by {0} desc limit {2}'.format(field, TABLE_NAME, LIMIT))
+            'select "{0}" as value, count(*) as count, avg(age) as age_average from {1} where "{0}" <> \'\' '
+            'group by "{0}" order by "{0}" desc limit {2}'.format(field, TABLE_NAME, LIMIT))
 
     def test_get_statistics_should_not_fail(self):
         expected = [{'key': 'value'}]
@@ -32,7 +32,7 @@ class TestStatisticsManager(TestCase):
         self._db.read.return_value = [{'key': 0}]
         field = 'citizenship'
         self._manager.get_total(field)
-        self._db.read.assert_called_once_with('select count(distinct {0}) from {1}'.format(field, TABLE_NAME))
+        self._db.read.assert_called_once_with('select count(distinct "{0}") from {1}'.format(field, TABLE_NAME))
 
     def test_get_total_should_not_fail(self):
         expected = 1
@@ -50,7 +50,7 @@ class TestStatisticsManager(TestCase):
         field = 'citizenship'
         self._manager.get_skipped_lines_count(field)
         self._db.read.assert_called_once_with(
-            'select count(*) from {1} group by {0} order by {0} desc limit -1 offset {2}'.format(field, TABLE_NAME,
+            'select count(*) from {1} group by "{0}" order by "{0}" desc limit -1 offset {2}'.format(field, TABLE_NAME,
                                                                                                  LIMIT))
 
     def test_get_skipped_lines_count_should_not_fail(self):
