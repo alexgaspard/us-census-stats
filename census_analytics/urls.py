@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from census_analytics.views import test
+from census_analytics.views import stats
 
 urlpatterns = [
-    url(r'^stats', test, name='stats'),
+    url(r'^stats', stats, name='stats'),
 ]
