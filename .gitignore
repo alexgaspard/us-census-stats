@@ -2,6 +2,4 @@ venv
 *.pyc
 .env
 .idea
-.vscode
 staticfiles
-node_modules
