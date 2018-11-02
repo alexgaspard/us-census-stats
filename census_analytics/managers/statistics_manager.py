@@ -32,7 +32,7 @@ class StatisticsManager(object):
     def get_total(self, field: str) -> int:
         if field not in ALLOWED_FIELDS:
             raise FieldNotAllowed(field)
-        total = self._db.read('select count(distinct {0}) from {1}) as total'.format(field, TABLE_NAME))
+        total = self._db.read('select count(distinct {0}) from {1}'.format(field, TABLE_NAME))
         return int(next(iter(total[0].values())))
 
     def get_skipped_lines_count(self, field: str) -> int:
