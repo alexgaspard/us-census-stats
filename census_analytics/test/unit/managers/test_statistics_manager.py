@@ -20,9 +20,8 @@ class TestStatisticsManager(TestCase):
         field = 'citizenship'
         self._manager.get_statistics(field)
         self._db.read.assert_called_once_with(
-            'select {0} as value, count(*) as count, avg(age) as age_average, (select count(distinct {0}) '
-            'from census_learn_sql) as total from census_learn_sql group by {0} '
-            'order by {0} desc limit 100'.format(field))
+            'select {0} as value, count(*) as count, avg(age) as age_average from census_learn_sql where {0} <> \'\' '
+            'group by {0} order by {0} desc limit 100'.format(field))
 
     def test_get_statistics_should_not_fail(self):
         expected = {'key': 'value'}

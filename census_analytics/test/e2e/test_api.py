@@ -6,15 +6,15 @@ setup()
 from django.contrib.auth.models import AnonymousUser
 from django.test import TestCase, RequestFactory
 
-from census_analytics.views import index
+from census_analytics.views import stats
 
 
-class TestIndex(TestCase):
+class TestAPI(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
-    def test_index_should_return_200(self):
-        request = self.factory.get("/")
+    def test_stats_should_return_200(self):
+        request = self.factory.get("/?field=citizenship")
         request.user = AnonymousUser()
-        response = index(request)
+        response = stats(request)
         self.assertEqual(response.status_code, 200)
