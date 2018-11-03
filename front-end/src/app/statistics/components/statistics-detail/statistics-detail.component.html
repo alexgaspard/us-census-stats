@@ -1,36 +1,36 @@
 <div class="form-group row">
-    <label for="selectField" class="col-sm-2 col-form-label">Select a field</label>
-    <div class="col-sm-10">
-        <select class="form-control" id="selectField" (change)="select($event.target.value)">
-            <option *ngFor="let field of ALLOWED_FIELDS" [selected]="field === ALLOWED_FIELDS[0]">{{field}}</option>
-        </select>
-    </div>
+  <label for="selectField" class="col-sm-2 col-form-label">Select a field</label>
+  <div class="col-sm-10">
+    <select class="form-control" id="selectField" (change)="select($event.target.value)">
+      <option *ngFor="let field of ALLOWED_FIELDS" [selected]="field === ALLOWED_FIELDS[0]">{{field}}</option>
+    </select>
+  </div>
 </div>
 <div class="alert alert-secondary">
-    <p>Non-displayed values <span class="badge badge-secondary">{{statistics.total - statistics.data.length}}</span></p>
-    <p>Non-displayed lines <span class="badge badge-secondary">{{statistics.skipped_lines_count}}</span></p>
+  <p>Non-displayed values <span class="badge badge-secondary">{{statistics.total - statistics.data.length}}</span></p>
+  <p>Non-displayed lines <span class="badge badge-secondary">{{statistics.skipped_lines_count}}</span></p>
 </div>
 <table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Value</th>
-            <th scope="col">Count</th>
-            <th scope="col">Average age</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let dataset of statistics.data">
-            <td>{{dataset.value}}</td>
-            <td>{{dataset.count}}</td>
-            <td>{{dataset.age_average}}</td>
-        </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th scope="col">Value</th>
+    <th scope="col">Count</th>
+    <th scope="col">Average age</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let dataset of statistics.data">
+    <td>{{dataset.value}}</td>
+    <td>{{dataset.count}}</td>
+    <td>{{dataset.age_average | number : '1.2-2'}}</td>
+  </tr>
+  </tbody>
 </table>
 <div [hidden]="!loading" class="row">
-    <div class="col text-center">
-        <div id='dot1' class='dot animated'></div>
-        <div id='dot2' class='dot animated'></div>
-        <div id='dot3' class='dot animated'></div>
-        <div id='dot4' class='dot animated'></div>
-    </div>
+  <div class="col text-center">
+    <div id='dot1' class='dot animated'></div>
+    <div id='dot2' class='dot animated'></div>
+    <div id='dot3' class='dot animated'></div>
+    <div id='dot4' class='dot animated'></div>
+  </div>
 </div>
