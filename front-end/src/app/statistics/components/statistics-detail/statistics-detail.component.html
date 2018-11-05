@@ -12,18 +12,19 @@
 </div>
 <table class="table table-striped table-hover">
   <thead>
-  <tr>
-    <th scope="col">Value</th>
-    <th scope="col">Count</th>
-    <th scope="col">Average age</th>
-  </tr>
+    <tr>
+      <th scope="col">Value</th>
+      <th scope="col">Count</th>
+      <th scope="col">Average age</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let dataset of statistics.data">
-    <td>{{dataset.value}}</td>
-    <td>{{dataset.count}}</td>
-    <td>{{dataset.age_average | number : '1.2-2'}}</td>
-  </tr>
+    <tr *ngFor="let dataset of statistics.data">
+      <td data-toggle="tooltip" data-placement="bottom" [title]="dataset.value">{{dataset.value}}</td>
+      <td data-toggle="tooltip" data-placement="bottom" [title]="dataset.count">{{dataset.count}}</td>
+      <td data-toggle="tooltip" data-placement="bottom" [title]="dataset.age_average | number : '1.0-2'">{{dataset.age_average
+        | number : '1.0-2'}}</td>
+    </tr>
   </tbody>
 </table>
 <div [hidden]="!loading" class="row">
