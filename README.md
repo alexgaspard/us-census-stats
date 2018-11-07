@@ -48,6 +48,8 @@ Or run `ng serve` for a dev server on [localhost:4200](http://localhost:4200/). 
 
 ## Deploying to Heroku
 
+You will need to remove Git LFS as it is not supported by Heroku.
+
 ```sh
 $ heroku create
 $ git push heroku master
