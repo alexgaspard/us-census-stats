@@ -1,4 +1,5 @@
 [![DepShield Badge](https://depshield.sonatype.org/badges/alexgaspard/us-census-stats/depshield.svg)](https://github.com/alexgaspard/us-census-stats/issues)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alexgaspard_us-census-stats&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexgaspard_us-census-stats)
 
 # US census stats
 
